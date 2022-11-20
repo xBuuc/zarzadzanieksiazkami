@@ -1,0 +1,1 @@
+<footer class="panel2"> Piotr Kozak &copy; 2022 </footer>

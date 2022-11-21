@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zarządzanie książkami</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="addbook.css">
 </head>
 
 <body>
@@ -22,15 +23,17 @@
         </ul>
     </nav>
 
-    <main class="panel">
+    <main id="container" class="panel">
 
         <form id="form" method="post">
-            <input type="text" name="tytul" placeholder="Tytuł książki">
-            <input type="text" name="imie_nazwisko" placeholder="Imię i nazwisko autora">
-            <input type="number" name="kod_isbn" placeholder="Kod ISBN">
-            <input type="date" name="data_wydania" placeholder="Data wydania książki">
-            <input type="number" name="ilosc_egzemplarzy" placeholder="Ilość egzemplarzy">
-            <input type="button" value="Dodaj książkę">
+            <ul id="errors"></ul>
+
+            <input type="text" name="tytul" id="tytul" class="input" placeholder="Tytuł książki">
+            <input type="text" name="imie_nazwisko" id="imienazwisko" class="input" placeholder="Imię i nazwisko autora">
+            <input type="text" name="kod_isbn" id="kodisbn" class="input" placeholder="Kod ISBN">
+            <input type="date" name="data_wydania" id="datawydania" class="input" placeholder="Data wydania książki">
+            <input type="number" name="ilosc_egzemplarzy" id="iloscegzemplarzy" class="input" placeholder="Ilość egzemplarzy">
+            <input type="submit" value="Dodaj książkę">
         </form>
 
     </main>

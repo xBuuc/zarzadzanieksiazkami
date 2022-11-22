@@ -19,6 +19,7 @@ form {
 	color: var(--wh);
 }
 
-.error {
+.error-hint {
 	color: red;
+	justify-self: end;
 }

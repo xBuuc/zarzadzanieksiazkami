@@ -1,23 +1,21 @@
 const form = document.getElementById("form");
 const errorContainer = document.getElementById("errors");
 
-let errors = [];
-
 form.addEventListener("submit", (event) => {
 	event.preventDefault();
-	errors = [];
+
+	let errors = [];
+	const els = document.getElementsByClassName("error-hint");
+
+	for (const e of [...els]) {
+		e.remove();
+	}
+
+	console.log(els.length);
 
 	const f = Object.values(form);
 
 	for (const input of f) {
-		console.log(
-			`%cInput %c${input.id || "[other]"} %chas value %c${input.value}`,
-			"color: #fff",
-			"color: #0f0",
-			"color: #fff",
-			"color: #0f0"
-		);
-
 		input.classList.remove("error");
 
 		let error = null;
@@ -35,23 +33,22 @@ form.addEventListener("submit", (event) => {
 			default:
 				break;
 		}
-
 		if (error !== null) {
+			console.log(error);
+
 			input.classList.add("error");
-			const el = document.createElement("span");
-			el.innerText = error;
-			el.classList.add("error");
-			input.after(el);
+			errors.push(error);
+
+			const errorHint = document.createElement("span");
+			errorHint.innerText = error;
+			errorHint.classList.add("error-hint");
+			input.after(errorHint);
+		} else {
+			input.classList.remove("error");
 		}
 	}
 
 	console.log(errors);
-
-	// for (const e of errors) {
-	// 	const item = document.createElement("li");
-	// 	item.innerText = e;
-	// 	errorContainer.appendChild(item);
-	// }
 
 	if (errors.length <= 0) {
 		form.submit();
@@ -67,7 +64,6 @@ function validateTytul(tytul) {
 	const isValid = isNotEmpty && isNotBig;
 
 	if (!isValid) {
-		errors.push("Tytuł jest niepoprawny");
 		return "Tytuł jest niepoprawny";
 	}
 
@@ -83,7 +79,6 @@ function validateISBN(kodisbn) {
 	isValid = isISBN;
 
 	if (!isValid) {
-		errors.push("Kod ISBN jest niepoprawny");
 		return "Kod ISBN jest niepoprawny";
 	}
 
@@ -96,7 +91,6 @@ function validateIloscEgzemplarzy(iloscegzemplarzy) {
 	const isValid = isNotEmpty;
 
 	if (!isValid) {
-		errors.push("Nie podałeś liczby egzemplarzy");
 		return "Nie podałeś liczby egzemplarzy";
 	}
 

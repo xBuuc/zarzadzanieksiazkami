@@ -71,10 +71,7 @@ function validateTytul(tytul) {
 }
 
 function validateISBN(kodisbn) {
-	const isISBN =
-		/^(?:ISBN(?:-13)?:? )?(?<gs1>\d{3})(?:(?<number>\d{9})|(?=[\d -]{14}$)[ -](?<registrationGroup>\d{1,5})[ -](?<registrant>\d{1,7})[ -](?<publication>\d{1,6})[ -])(?<checkDigit>\d)$/.test(
-			kodisbn
-		);
+	const isISBN = /^(?=(?:\D*\d){10}(?:(?:\D*\d){3})?$)[\d-]+$/gm.test(kodisbn);
 
 	isValid = isISBN;
 

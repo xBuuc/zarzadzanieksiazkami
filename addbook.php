@@ -15,7 +15,11 @@
     <?php
     require 'src/database.php';
 
-    $res = save_pdo($_POST['tytul'], $_POST['imie_nazwisko'], $_POST['kod_isbn'], $_POST['data_wydania'], $_POST['ilosc_egzemplarzy']);
+    if (!empty($_POST)) {
+
+        $result = save_pdo($_POST['tytul'], $_POST['imie_nazwisko'], $_POST['kod_isbn'], $_POST['data_wydania'], $_POST['ilosc_egzemplarzy']);
+        echo $result;
+    }
     ?>
 
     <?php require 'elements/uppernav.php'; ?>

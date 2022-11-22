@@ -2,9 +2,9 @@
 
 
 
-function save_pdo(string $tytul, string $imie, string $isbn, string $data, string $ilosc): bool
+function save_pdo(string $tytul, string $imie, string $isbn, string $data, int $ilosc): bool
 {
-    $dir = 'sqlite:src/ksiazki.db';
+    $dir = 'sqlite:src/ksiazki.sqlite3';
 
     try {
         $db = new PDO($dir) or die("cannot open the database");;

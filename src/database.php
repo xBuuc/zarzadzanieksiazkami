@@ -5,6 +5,7 @@
 function save_pdo(string $tytul, string $imie, string $isbn, string $data, int $ilosc): bool
 {
     $dir = 'sqlite:src/ksiazki.sqlite3';
+    $dt =  date('Y-m-d', strtotime($data));
 
     try {
         $db = new PDO($dir) or die("cannot open the database");;
@@ -25,7 +26,7 @@ function save_pdo(string $tytul, string $imie, string $isbn, string $data, int $
         ':tytul' => $tytul,
         ':imie' => $imie,
         ':isbn' => $isbn,
-        ':data' => $data,
+        ':data' => $dt,
         ':ilosc' => $ilosc
     ]);
 

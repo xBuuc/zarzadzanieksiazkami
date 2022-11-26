@@ -44,3 +44,41 @@ function getksiazki(): array
 
     return $result ? $result : [];
 }
+
+
+class ksiazkidelete
+{
+    public string $tytul;
+    public string $imie;
+    public string $isbn;
+    public string $dataw;
+    public string $ilosc;
+    public ?string $edited_at;
+    public ?string $deleted_at;
+}
+
+function deleteksiazka(int $id): ?ksiazkidelete
+{
+
+    $dir = 'sqlite:src/ksiazki.sqlite3';
+
+    try {
+        $db = new PDO($dir);
+    } catch (Exception $e) {
+        echo $e->getMessage();
+        return null;
+    }
+
+    // Create SQL query
+    $sql = <<<SQL
+       DELETE FROM ksiazki WHERE ID = $id;
+    SQL;
+
+    // prepare statement
+    $stmt = $db->prepare($sql);
+
+    $stmt->setFetchMode(PDO::FETCH_CLASS, ksiazkidelete::class);
+    $stmt->execute();
+
+    return $stmt->fetch();
+}

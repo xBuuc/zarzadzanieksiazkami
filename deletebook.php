@@ -7,21 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zarządzanie książkami</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="addbook.css">
 </head>
 
 <body>
-
-    <?php
-    require 'src/database.php';
-
-    if (!empty($_POST)) {
-
-        $result = save_pdo($_POST['tytul'], $_POST['imie_nazwisko'], $_POST['kod_isbn'], $_POST['data_wydania'], $_POST['ilosc_egzemplarzy']);
-        echo $result;
-    }
-    ?>
-
+    <?php require 'src/ksiazkidb.php' ?>
     <?php require 'elements/uppernav.php'; ?>
 
     <nav id="nav" class="panel">
@@ -33,18 +22,25 @@
         </ul>
     </nav>
 
-    <main id="container" class="panel">
+    <main class="panel">
+        <?php
+        include_once 'src/ksiazkidb.php';
+        $x = getksiazki();
+        foreach (($x) as $y) :
+        ?>
 
-
-
-        <form action="" method="POST">
-            <input name="id" type="hidden" value="">
-            <input class="" type="submit" value="Usuń książkę">
-        </form>
+            <tr>
+                <td><span color="white">Tytuł: <?= $y->tytul ?></span></td>
+                <td><span color="white">Imie i nazwisko autora: <?= $y->imie ?></span></td>
+                <td><span color="white">Kod ISBN: <?= $y->isbn ?></span> </td>
+                <td><span color="white">Data wydania: <?= $y->dataw ?></span></td>
+                <td><span color="white">Ilość wydanych egzemplarzy: <?= $y->ilosc ?></span></td>
+            </tr></br>
+        <?php endforeach; ?>
     </main>
 
     <?php require 'elements/footer.php'; ?>
-    <script src="addbook.js"></script>
+
 </body>
 
 </html>

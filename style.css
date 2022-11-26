@@ -47,9 +47,15 @@ body {
 }
 
 main {
+	color: var(--wh);
+	padding: var(--padding);
 	grid-column: 2/4;
 	grid-row: 2;
 	margin-right: calc(var(--padding) / 2);
+}
+
+main > td {
+	border: 1px blue;
 }
 
 #nav {

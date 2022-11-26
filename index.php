@@ -10,7 +10,7 @@
 </head>
 
 <body>
-
+    <?php require 'src/ksiazkidb.php' ?>
     <?php require 'elements/uppernav.php'; ?>
 
     <nav id="nav" class="panel">
@@ -23,7 +23,20 @@
     </nav>
 
     <main class="panel">
-        <!-- skrypt -->
+        <?php
+        include_once 'src/ksiazkidb.php';
+        $x = getksiazki();
+        foreach (($x) as $y) :
+        ?>
+
+            <tr>
+                <td><span color="white">Tytuł: <?= $y->tytul ?></span></td>
+                <td><span color="white">Imie i nazwisko autora: <?= $y->imie ?></span></td>
+                <td><span color="white">Kod ISBN: <?= $y->isbn ?></span> </td>
+                <td><span color="white">Data wydania: <?= $y->dataw ?></span></td>
+                <td><span color="white">Ilość wydanych egzemplarzy: <?= $y->ilosc ?></span></td>
+            </tr></br>
+        <?php endforeach; ?>
     </main>
 
     <?php require 'elements/footer.php'; ?>
